@@ -12,5 +12,18 @@ and open the template in the editor.
     </head>
     <body>
         <div>TODO write content</div>
+        <script type="text/javascript">
+            var Req = new XMLHttpRequest();
+            Req.onreadystatechange = function(){
+                if(Req.readyState === 4){
+                    if(Req.status===200){
+                        var item = eval("("+Req.responseText+")");
+                        document.getElementsByTagName('div')[0].innerHTML = item['name'] + item['age'];
+                    }
+                }
+            };
+            Req.open('GET','out.php',true);
+            Req.send('');
+        </script>
     </body>
 </html>
